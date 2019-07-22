@@ -51,7 +51,7 @@ class Tabs extends React.Component {
       <div className="section section-tabs">
         <Container>
           <div className="title">
-            <h3 className="mb-3">Navigation Tabs</h3>
+            <h3 className="mb-3">Produtos em Destaque</h3>
           </div>
           <Row>
             <Col className="ml-auto mr-auto" md="10" xl="6">
