@@ -1,0 +1,20 @@
+{
+  "name": "servidorbrinquedox",
+  "version": "1.0.0",
+  "description": "Servidor site brinquedox",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "keywords": [
+    "Servidor",
+    "brinquedox"
+  ],
+  "author": "2º Info C",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.6.6",
+    "nodemon": "^1.19.1"
+  }
+}
