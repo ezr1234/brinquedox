@@ -27,15 +27,14 @@ import Index from "views/Index.jsx";
 import LandingPage from "views/examples/LandingPage.jsx";
 import RegisterPage from "views/examples/RegisterPage.jsx";
 import ProfilePage from "views/examples/ProfilePage.jsx";
+import Dashboard from "./views/examples/Login.jsx";
+import Painel from './views/examples/Painel.jsx';
 
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
       <Route path="/components" render={props => <Index {...props} />} />
-      <Route
-        path="/"
-        render={props => <LandingPage {...props} />}
-      />
+      
       <Route
         path="/register-page"
         render={props => <RegisterPage {...props} />}
@@ -43,6 +42,18 @@ ReactDOM.render(
       <Route
         path="/profile-page"
         render={props => <ProfilePage {...props} />}
+      />
+      <Route
+        path="/dashboard"
+        render={props => <Dashboard {...props} />}
+      />
+      <Route
+        path="/painel"
+        render={props => <Painel {...props} />}
+      />
+      <Route
+        path="/"
+        render={props => <LandingPage {...props} />}
       />
     </Switch>
   </BrowserRouter>,

@@ -9,6 +9,7 @@ import {
 
 export default class Product extends Component {
   render() {
+    const {nome,imagem} = this.props;
     return(
       <Col className="ml-auto mr-auto" md="10" xl="6">
               <div className="mb-3">
@@ -20,7 +21,7 @@ export default class Product extends Component {
                 <CardHeader>
                   <div className="tabsCardTitle">
                       <Row>
-                      <h3>Varinha Dumbledore</h3>
+                      <h3>{nome}</h3>
                       <button type="button" className="btn-icon btn-round btn btn-success iconButton">        
                         <i className="tim-icons icon-basket-simple iconProduct"/>
                       </button>
@@ -28,7 +29,7 @@ export default class Product extends Component {
                   </div>
                 </CardHeader>
                 <CardBody className="tabsProductDescription">
-                  <img src="https://cdn.discordapp.com/attachments/540284091162034176/602977204917501952/unknown.png" alt="Teste"></img>
+                  <img src={imagem} alt="Teste"></img>
                       <p>
                         Collaboratively administrate empowered markets via
                         plug-and-play networks. Dynamically procrastinate B2C

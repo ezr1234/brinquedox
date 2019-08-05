@@ -23,20 +23,55 @@ import {
   Row,
 } from "reactstrap";
 
+let getProducts = async () =>{
+  var responseJson;
+  try {
+    let response = await fetch('http://localhost:8080/allproducts', {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+  });
+    responseJson = await response.json();
+    return responseJson;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+let idProduto = 0;
+
 class Tabs extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      iconTabs: 1,
-      textTabs: 4
+      products:[]
     };
   }
-  toggleTabs = (e, stateName, index) => {
-    e.preventDefault();
-    this.setState({
-      [stateName]: index
+  async componentDidMount(){
+    await getProducts().then((element) => {
+      const result = [];
+      for(let i in element){
+        var newProduct = {
+          atributos:{
+            nome:element[i].nome,
+            imagem:element[i].imagem
+          },
+          key: idProduto++
+        }
+        result.push(newProduct);
+      }
+      console.log(result);
+      this.setState({
+        products: result
+      })
+    })
+    .catch((error) => {
+      console.error('Opa! Houve um erro:', error.message);
     });
-  };
+
+  }
   render() {
     return (
       <div className="section section-tabs">
@@ -45,7 +80,9 @@ class Tabs extends React.Component {
             <h3 className="mb-3">Produtos em Destaque</h3>
           </div>
           <Row>
-            <Product />
+            {this.state.products.map((valores) =>{
+              return <Product nome={valores.atributos.nome} imagem={valores.atributos.imagem} key={valores.key}/>
+            })}
           </Row>
         </Container>
       </div>
