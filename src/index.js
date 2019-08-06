@@ -27,8 +27,9 @@ import Index from "views/Index.jsx";
 import LandingPage from "views/examples/LandingPage.jsx";
 import RegisterPage from "views/examples/RegisterPage.jsx";
 import ProfilePage from "views/examples/ProfilePage.jsx";
-import Dashboard from "./views/examples/Login.jsx";
+import Login from "./views/examples/Login.jsx";
 import Painel from './views/examples/Painel.jsx';
+import Cadastrar from './views/examples/Cadastrar.jsx';
 
 ReactDOM.render(
   <BrowserRouter>
@@ -44,8 +45,12 @@ ReactDOM.render(
         render={props => <ProfilePage {...props} />}
       />
       <Route
-        path="/dashboard"
-        render={props => <Dashboard {...props} />}
+        path="/entrar"
+        render={props => <Login {...props} />}
+      />
+      <Route
+        path="/cadastrar"
+        render={props => <Cadastrar {...props} />}
       />
       <Route
         path="/painel"

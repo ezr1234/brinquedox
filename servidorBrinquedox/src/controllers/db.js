@@ -14,6 +14,46 @@ class produtos {
       });
     });
   }
+  static newUser (req,res){
+    let nome = req.body.nome;
+    let email = req.body.email;
+    let senha = req.body.senha;
+    let cep = req.body.cep;
+    let endereco = req.body.endereco;
+    let numero = req.body.numero;
+    let cpf = req.body.endereco;
+    let carrinho = []
+    MongoClient.connect(url,{ useNewUrlParser: true }, function(err, db) {
+      if (err) throw err;
+      var dbo = db.db("loja");
+      dbo.collection("usuarios").findOne({email:email},(err,result) =>{
+        if (err) {console.log(err)};
+        if (result){
+          res.sendStatus(403);
+          db.close();
+         }
+        else{
+          var myobj = { 
+            nome: nome,
+            email:email,
+            senha:senha,
+            cep:cep,
+            cpf:cpf,
+            endereco:endereco,
+            numero:numero,
+            carrinho:carrinho
+         };
+           dbo.collection("usuarios").insertOne(myobj, function(err, result) {
+            if (err) throw err;
+            res.send('1 documento cadastrado');
+            db.close();
+            });
+        }
+      })
+    });
+
+  }
+
 }
 
 class dashboard{
@@ -135,6 +175,35 @@ class dashboard{
         db.close();
       }) 
     })
+  }
+  static getUsers(req,res){
+    MongoClient.connect(url,{ useNewUrlParser: true }, function(err, db) {
+      if (err) throw err;
+      var dbo = db.db("loja");
+      dbo.collection("usuarios").find({}).toArray((err,result)=>{
+        if (err) throw err;
+        res.send(result);
+        db.close();
+      }) 
+    })
+  }
+  static deleteUser(req,res){
+    let nome = req.body.nome;
+    let email = req.body.email;
+  MongoClient.connect(url, {useNewUrlParser:true}, (err,db) =>{
+    if (err) {console.log(err)}
+    let dbo = db.db("loja");
+    dbo.collection("usuarios").deleteOne({nome:nome,email:email}, (err,result) =>{
+      if(err) {console.log(err)}
+      if(result.deletedCount === 1){
+        res.end('1 Usuário apagado');
+      }
+      else{
+        res.sendStatus(404);
+      }
+
+    })
+  })
   }
 }
 

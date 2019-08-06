@@ -9,12 +9,12 @@ import {
 
 export default class Product extends Component {
   render() {
-    const {nome,imagem} = this.props;
+    const {nome,imagem, categoria} = this.props;
     return(
       <Col className="ml-auto mr-auto" md="10" xl="6">
               <div className="mb-3">
                 <small className="text-uppercase font-weight-bold">
-                  CATEGORIA
+                  {categoria}
                 </small>
               </div>
               <Card>

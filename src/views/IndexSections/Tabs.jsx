@@ -56,7 +56,8 @@ class Tabs extends React.Component {
         var newProduct = {
           atributos:{
             nome:element[i].nome,
-            imagem:element[i].imagem
+            imagem:element[i].imagem,
+            categoria:element[i].categoria
           },
           key: idProduto++
         }
@@ -81,7 +82,7 @@ class Tabs extends React.Component {
           </div>
           <Row>
             {this.state.products.map((valores) =>{
-              return <Product nome={valores.atributos.nome} imagem={valores.atributos.imagem} key={valores.key}/>
+              return <Product nome={valores.atributos.nome} imagem={valores.atributos.imagem} key={valores.key} categoria={valores.atributos.categoria}/>
             })}
           </Row>
         </Container>
