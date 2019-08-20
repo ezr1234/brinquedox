@@ -23,7 +23,7 @@ import {
 // core components
 import ExamplesNavbar from "../../components/Navbars/ExamplesNavbar.jsx";
 
-export default class Dashboard extends React.Component {
+export default class Login extends React.Component {
     componentDidMount() {
         document.body.classList.toggle("landing-page");
       }

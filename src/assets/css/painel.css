@@ -1,0 +1,21 @@
+.div-form{
+    background-color: #b4b2b2c2;
+    padding: 10rem;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+
+.form{
+    margin: 10;
+    
+}
+
+.form-input{
+    background-color: #dfdfdf;
+}
+
+.form-input:focus{
+    color:'red'
+}
