@@ -8,6 +8,6 @@ app.use(express.json());
 app.use('/', require('./src/routes'));
 
 // eslint-disable-next-line no-undef
-app.listen(port = process.env.PORT || 80);
+app.listen(port = process.env.PORT || 8080);
 
 console.log("Servior rodando na porta:",port);
