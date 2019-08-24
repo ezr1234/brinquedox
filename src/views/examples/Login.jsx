@@ -1,3 +1,20 @@
+/*!
+
+=========================================================
+* BLK Design System React - v1.0.0
+=========================================================
+
+* Product Page: https://www.creative-tim.com/product/blk-design-system-react
+* Copyright 2019 Creative Tim (https://www.creative-tim.com)
+* Licensed under MIT (https://github.com/creativetimofficial/blk-design-system-react/blob/master/LICENSE.md)
+
+* Coded by Creative Tim
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+*/
 import React from "react";
 import classnames from "classnames";
 // reactstrap components
@@ -9,6 +26,7 @@ import {
   CardFooter,
   CardImg,
   CardTitle,
+  Label,
   FormGroup,
   Form,
   Input,
@@ -21,32 +39,46 @@ import {
 } from "reactstrap";
 
 // core components
-import ExamplesNavbar from "../../components/Navbars/ExamplesNavbar.jsx";
+import ExamplesNavbar from "components/Navbars/ExamplesNavbar.jsx";
+import Footer from "components/Footer/Footer.jsx";
 
-export default class Login extends React.Component {
-    componentDidMount() {
-        document.body.classList.toggle("landing-page");
-      }
-      componentWillUnmount() {
-        document.body.classList.toggle("landing-page");
-      }
-    
-      constructor(props) {
-        super(props);
-        this.state = {
-          iconTabs: 1,
-          textTabs: 4
-        };
-      }
-      toggleTabs = (e, stateName, index) => {
-        e.preventDefault();
-        this.setState({
-          [stateName]: index
-        });
-      };
+class RegisterPage extends React.Component {
+  state = {
+    squares1to6: "",
+    squares7and8: ""
+  };
+  componentDidMount() {
+    document.body.classList.toggle("register-page");
+    document.documentElement.addEventListener("mousemove", this.followCursor);
+  }
+  componentWillUnmount() {
+    document.body.classList.toggle("register-page");
+    document.documentElement.removeEventListener(
+      "mousemove",
+      this.followCursor
+    );
+  }
+  followCursor = event => {
+    let posX = event.clientX - window.innerWidth / 2;
+    let posY = event.clientY - window.innerWidth / 6;
+    this.setState({
+      squares1to6:
+        "perspective(500px) rotateY(" +
+        posX * 0.05 +
+        "deg) rotateX(" +
+        posY * -0.05 +
+        "deg)",
+      squares7and8:
+        "perspective(500px) rotateY(" +
+        posX * 0.02 +
+        "deg) rotateX(" +
+        posY * -0.02 +
+        "deg)"
+    });
+  };
   render() {
     return (
-        <>
+      <>
         <ExamplesNavbar />
         <div className="wrapper">
           <div className="page-header">
@@ -55,13 +87,23 @@ export default class Login extends React.Component {
               <Container>
                 <Row>
                   <Col className="offset-lg-0 offset-md-3" lg="5" md="6">
+                    <div
+                      className="square square-7"
+                      id="square7"
+                      style={{ transform: this.state.squares7and8 }}
+                    />
+                    <div
+                      className="square square-8"
+                      id="square8"
+                      style={{ transform: this.state.squares7and8 }}
+                    />
                     <Card className="card-register">
                       <CardHeader>
                         <CardImg
                           alt="..."
                           src={require("assets/img/square-purple-1.png")}
                         />
-                        <CardTitle tag="h4">Login</CardTitle>
+                        <CardTitle tag="h4">Entrar</CardTitle>
                       </CardHeader>
                       <CardBody>
                         <Form className="form">
@@ -103,12 +145,10 @@ export default class Login extends React.Component {
                               }
                             />
                           </InputGroup>
-                          <FormGroup check className="text-left">
-                          </FormGroup>
                         </Form>
                       </CardBody>
                       <CardFooter>
-                        <Button className="btn-round" color="primary" size="lg" href="/painel">
+                        <Button className="btn-round" color="primary" size="lg">
                           Entrar
                         </Button>
                       </CardFooter>
@@ -149,8 +189,11 @@ export default class Login extends React.Component {
               </Container>
             </div>
           </div>
+          <Footer />
         </div>
-        </>
+      </>
     );
   }
 }
+
+export default RegisterPage;

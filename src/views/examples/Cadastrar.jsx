@@ -183,7 +183,7 @@ class RegisterPage extends React.Component {
                       </CardBody>
                       <CardFooter>
                         <Button className="btn-round" color="primary" size="lg">
-                          Get Started
+                          Brincar
                         </Button>
                       </CardFooter>
                     </Card>

@@ -29,6 +29,8 @@ import {
 import ExamplesNavbar from "components/Navbars/ExamplesNavbar.jsx";
 import Footer from "components/Footer/Footer.jsx";
 
+const ursoImage = "https://images.vexels.com/media/users/3/132443/isolated/preview/189f4ed12694ded24bbaa8e5f8ee68bc-ursinho-de-pel-cia-brinquedo-by-vexels.png"
+
 class LandingPage extends React.Component {
   componentDidMount() {
     document.body.classList.toggle("landing-page");
@@ -90,17 +92,14 @@ class LandingPage extends React.Component {
               <Row className="row-grid justify-content-between align-items-center text-left">
                 <Col lg="6" md="6">
                   <h1 className="text-white">
-                    We keep your coin <br />
-                    <span className="text-white">secured</span>
+                    Nós vendemos sonhos <br />
                   </h1>
                   <p className="text-white mb-3">
-                    A wonderful serenity has taken possession of my entire soul,
-                    like these sweet mornings of spring which I enjoy with my
-                    whole heart. I am alone, and feel...
+                    A maneira mais fácil de comprar brinquedos chegou!
                   </p>
                   <div className="btn-wrapper mb-3">
                     <p className="category text-success d-inline">
-                      From 9.99%/mo
+                      Saiba mais
                     </p>
                     <Button
                       className="btn-link"
@@ -145,7 +144,7 @@ class LandingPage extends React.Component {
                   <img
                     alt="..."
                     className="img-fluid"
-                    src={require("assets/img/etherum.png")}
+                    src={ursoImage}
                   />
                 </Col>
               </Row>

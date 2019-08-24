@@ -26,7 +26,7 @@ import {
 let getProducts = async () =>{
   var responseJson;
   try {
-    let response = await fetch('http://localhost:8080/allproducts', {
+    let response = await fetch('http://brinquedox.herokuapp.com/allproducts', {
       method: 'GET',
       headers: {
         Accept: 'application/json',

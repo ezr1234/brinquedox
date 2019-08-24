@@ -18,38 +18,12 @@ import {
   Col
 } from "reactstrap";
 
-import css from '../../assets/css/painel.css'
 import NavBar from '../../components/Navbars/ExamplesNavbar'
 import Footer from '../../components/Footer/Footer'
 
 // import { Container } from './styles';
 
-const submit = async () =>{
-
-  try {
-    let response = await fetch('localhost:8080/newuser', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-       nome:newUser.state.nome,
-       email:newUser.state.email,
-       senha:newUser.state.senha,
-       cep:newUser.state.cep,
-       cpf:newUser.state.cpf,
-       endereco:newUser.state.endereco,
-       numero:newUser.state.numero,
-      }),
-  });
-    let responseJson = await response.json();
-    return responseJson;
-  } catch (error) {
-    console.error(error);
-  }
-
-}
+require('../../assets/css/painel.css');
 
 export default class newUser extends Component {
 
@@ -62,10 +36,9 @@ export default class newUser extends Component {
 
   constructor(props) {
     super(props);
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {
-      iconTabs: 1,
-      textTabs: 4,
-      user:{
         nome:'',
         email:'',
         senha:'',
@@ -73,7 +46,6 @@ export default class newUser extends Component {
         cep:'',
         numero:'',
         endereco:''
-      }
     };
   }
   toggleTabs = (e, stateName, index) => {
@@ -83,8 +55,61 @@ export default class newUser extends Component {
     });
   };
 
+  handleSubmit(event) {
+    try {
+      let response = fetch('http://brinquedox.herokuapp.com/newuser', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          nome:this.state.nome,
+          email:this.state.email,
+          senha:this.state.senha,
+          cpf:this.state.cpf,
+          cep:this.state.cep,
+          numero:this.state.numero,
+          endereco:this.state.endereco,
+        }),
+    });
+    response.then((res)=>{
+      if(res.status===200){
+        alert('Salvo com sucesso');
+        this.setState({nome:'',
+        email:'',
+        senha:'',
+        cpf:'',
+        cep:'',
+        numero:'',
+        endereco:''})
+
+      }
+      else if(res.status === 403){
+        alert('Usuário já existente')
+      }
+      else{
+        alert('Entre com os valores corretos')
+      }
+    })
+    } catch (error) {
+      console.error(error);
+    }
+  
+    event.preventDefault();
+  }
+
+  handleInputChange(event) {
+    const target = event.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const name = target.name;
+    this.setState({
+      [name]: value
+    });
+  }
+
   render() {
-    var {numero,endereco,senha,email,cpf,cep,nome} = this.state.user;
+    var {numero,endereco,senha,email,cpf,cep,nome} = this.state;
     return (
       <>
       <NavBar/>
@@ -94,16 +119,17 @@ export default class newUser extends Component {
             <div className="content">
               <h1>Cadastrar Usuário</h1>
               <Container>
-              <Form className={"form"}>
-                <Input type={"text"} className={"form-input"} placeholder="Nome"  value={nome}/>
-                <Input type={"email"} className={"form-input"} placeholder="Email" value={email}/>
-                <Input type={"password"} className={"form-input"} placeholder="Senha" value={senha}/>
-                <Input type={"number"} className={"form-input"} placeholder="CPF" value={cpf}/>
-                <Input type={"number"} className={"form-input"} placeholder="CEP" value={cep}/>
-                <Input type={"text"} className={"form-input"} placeholder="Endereço" value={endereco}/>
-                <Input type={"number"} className={"form-input"} placeholder="Número da casa" value={numero}/>
+              <Form className={"form"} onSubmit={this.handleSubmit}>
+                <Input type="text" className="form-input" placeholder="Nome" name="nome" value={nome} onChange={this.handleInputChange}/>
+                <Input type="email" className="form-input" placeholder="Email" name="email" value={email} onChange={this.handleInputChange}/>
+                <Input type="password" className="form-input" placeholder="Senha" name="senha" value={senha} onChange={this.handleInputChange}/>
+                <Input type="number" className="form-input" placeholder="CPF" name="cpf" value={cpf} onChange={this.handleInputChange}/>
+                <Input type="number" className="form-input" placeholder="CEP" name="cep" value={cep} onChange={this.handleInputChange}/>
+                <Input type="text" className="form-input" placeholder="Endereço" name="endereco" value={endereco} onChange={this.handleInputChange}/>
+                <Input type="number" className="form-input" placeholder="Numero" name="numero" value={numero} onChange={this.handleInputChange}/>
 
-              <Button className={"btn btn-neutral form-submit"} onClick={submit()}>Salvar</Button>
+
+                <Input type="submit" value="Enviar" />
               </Form>
               </Container>
             </div>

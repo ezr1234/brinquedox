@@ -23,6 +23,7 @@ class produtos {
     let numero = req.body.numero;
     let cpf = req.body.endereco;
     let carrinho = []
+    if(nome&&email&&senha&&cep&&endereco&&numero&&cpf){
     MongoClient.connect(url,{ useNewUrlParser: true }, function(err, db) {
       if (err) throw err;
       var dbo = db.db("loja");
@@ -48,10 +49,14 @@ class produtos {
             res.send('1 documento cadastrado');
             db.close();
             });
-        }
-      })
-    });
+          }
+        })
+      });
 
+    }else{
+      res.sendStatus(400);
+      res.end();
+    }
   }
 
 }
