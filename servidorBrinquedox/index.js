@@ -1,7 +1,10 @@
 const express = require('express');
 const app = express();
 var cors = require('cors');
+let morgan = require('morgan');
 var port;
+
+app.use(morgan('dev'));
 
 app.use(cors());
 app.use(express.json());

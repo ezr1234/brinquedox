@@ -13,9 +13,11 @@
 }
 
 .form-input{
-    background-color: #dfdfdf;
+    background-color: #ffffff;
+    color:black;
+    margin-bottom:0.4rem;
 }
 
 .form-input:focus{
-    color:'red'
+    color:white
 }
