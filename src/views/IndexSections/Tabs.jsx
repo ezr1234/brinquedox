@@ -65,7 +65,6 @@ class Tabs extends React.Component {
         }
         result.push(newProduct);
       }
-      console.log(result);
       this.setState({
         products: result
       })
