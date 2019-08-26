@@ -117,7 +117,7 @@ class PagesNavbar extends React.Component {
               <Row>
                 <Col className="collapse-brand" xs="6">
                   <a href="#pablo" onClick={e => e.preventDefault()}>
-                    BLK•React
+                    Brinquedox• Para todos
                   </a>
                 </Col>
                 <Col className="collapse-close text-right" xs="6">

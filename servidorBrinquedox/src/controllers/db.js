@@ -69,6 +69,9 @@ class dashboard{
     let dimensoes = req.body.dimensoes;
     let marca = req.body.marca;
     let imagem = req.body.imagem;
+    let valor = req.body.valor;
+    let descricao = req.body.descricao;
+    if(nome&&categoria&&peso&&dimensoes&&marca&&imagem&&valor&&descricao){
     MongoClient.connect(url,{ useNewUrlParser: true }, function(err, db) {
       if (err) throw err;
       var dbo = db.db("loja");
@@ -81,7 +84,9 @@ class dashboard{
             peso:peso,
             dimensoes:dimensoes,
             marca:marca,
-            imagem:imagem
+            imagem:imagem,
+            valor:valor,
+            descricao:descricao
          };
          dbo.collection("produtos").findOne({nome:nome},(err,result)=>{
             if(err){console.log(err)};
@@ -97,13 +102,17 @@ class dashboard{
                 });
               }
             })
-         }
-        else{
-          res.sendStatus(403);
-          db.close();
-        }
-      })
-    });
+          }
+          else{
+            res.sendStatus(403);
+            db.close();
+          }
+        })
+      });
+    }else{
+      res.sendStatus(400);
+      res.end();
+    }
   }
 
   static deleteProduct(req,res){
@@ -130,6 +139,7 @@ class dashboard{
   }
   static insertCategoria(req,res){
     let categoria = req.body.categoria;
+    if(categoria){
     MongoClient.connect(url,{ useNewUrlParser: true }, function(err, db) {
       if (err) throw err;
       var dbo = db.db("loja");
@@ -144,10 +154,14 @@ class dashboard{
             if (err) throw err;
             res.send('1 documento cadastrado');
             db.close();
-          });
-        }
+            });
+          }
+        })
       })
-    })
+    }else{
+      res.sendStatus(400);
+      res.end();
+    }
   }
   static deleteCategoria(req,res){
     let categoria = req.body.categoria;

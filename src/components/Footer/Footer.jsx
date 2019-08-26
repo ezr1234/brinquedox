@@ -35,8 +35,8 @@ class Footer extends React.Component {
       <footer className="footer">
         <Container>
           <Row>
-            <Col md="3">
-              <h1 className="title">BLK•</h1>
+            <Col md="4">
+              <h1 className="title">Brinquedox•</h1>
             </Col>
             <Col md="3">
               <Nav>

@@ -21,3 +21,14 @@
 .form-input:focus{
     color:white
 }
+
+.table-painel{
+    padding: 10rem;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+.table-painel td{
+    color:white
+}

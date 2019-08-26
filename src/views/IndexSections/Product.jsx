@@ -9,7 +9,7 @@ import {
 
 export default class Product extends Component {
   render() {
-    const {nome,imagem, categoria} = this.props;
+    const {nome,imagem, categoria,descricao,valor} = this.props;
     return(
       <Col className="ml-auto mr-auto" md="10" xl="6">
               <div className="mb-3">
@@ -31,14 +31,9 @@ export default class Product extends Component {
                 <CardBody className="tabsProductDescription">
                   <img src={imagem} alt="Teste"></img>
                       <p>
-                        Collaboratively administrate empowered markets via
-                        plug-and-play networks. Dynamically procrastinate B2C
-                        users after installed base benefits. <br />
-                        <br />
-                        Dramatically visualize customer directed convergence
-                        without revolutionary ROI.
+                        {descricao}
                       </p>
-                      <h4>R$55,00</h4>
+                      <h4>R$: {valor}</h4>
                 </CardBody>
               </Card>
             </Col>

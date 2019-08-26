@@ -28,7 +28,10 @@ import LandingPage from "views/examples/LandingPage.jsx";
 import RegisterPage from "views/examples/RegisterPage.jsx";
 import ProfilePage from "views/examples/ProfilePage.jsx";
 import Login from "./views/examples/Login.jsx";
-import Painel from './views/examples/Painel.jsx';
+import NewUser from './views/examples/NewUser.jsx';
+import NewProduct from './views/examples/NewProduct.jsx';
+import NewCategoria from './views/examples/NewCategoria';
+import Painel from "./views/examples/Painel";
 import Cadastrar from './views/examples/Cadastrar.jsx';
 
 ReactDOM.render(
@@ -53,7 +56,23 @@ ReactDOM.render(
         render={props => <Cadastrar {...props} />}
       />
       <Route
+        path="/painel/newuser"
+        exact
+        render={props => <NewUser {...props} />}
+      />
+      <Route
+        path="/painel/newproduct"
+        exact
+        render={props => <NewProduct {...props} />}
+      />
+      <Route
+        path="/painel/newcategoria"
+        exact
+        render={props => <NewCategoria {...props} />}
+      />
+      <Route
         path="/painel"
+        exact
         render={props => <Painel {...props} />}
       />
       <Route
