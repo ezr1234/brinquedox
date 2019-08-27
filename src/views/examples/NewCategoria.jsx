@@ -39,7 +39,7 @@ export default class newUser extends Component {
 
   handleSubmit(event) {
     try {
-      let response = fetch('http://localhost:8080/insertcategoria', {
+      let response = fetch('http://brinquedox.herokuapp.com/insertcategoria', {
         method: 'POST',
         headers: {
           Accept: 'application/json',
