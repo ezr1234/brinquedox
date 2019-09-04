@@ -53,7 +53,7 @@ let getCategorias = async () =>{
 let getFornecedores = async () =>{
   var responseJson;
   try {
-    let response = await fetch('http://localhost:8080/getfornecedores', {
+    let response = await fetch('http://brinquedox.herokuapp.com/getfornecedores', {
       method: 'GET',
       headers: {
         Accept: 'application/json',
