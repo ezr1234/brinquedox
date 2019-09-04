@@ -6,6 +6,7 @@ import {Redirect} from 'react-router-dom';
 
 import {
     Table,
+    Col,
     Row,
     Container
 }
@@ -30,9 +31,64 @@ let getProducts = async () =>{
     } catch (error) {
       console.error(error);
     }
-  }
+}
 
-  let idProduto = 0;
+let getCategorias = async () =>{
+  var responseJson;
+  try {
+    let response = await fetch('http://brinquedox.herokuapp.com/getcategoria', {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+  });
+    responseJson = await response.json();
+    return responseJson;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+let getFornecedores = async () =>{
+  var responseJson;
+  try {
+    let response = await fetch('http://localhost:8080/getfornecedores', {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+  });
+    responseJson = await response.json();
+    return responseJson;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+let getUsuarios = async () =>{
+  var responseJson;
+  try {
+    let response = await fetch('http://brinquedox.herokuapp.com/getusers', {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+  });
+    responseJson = await response.json();
+    return responseJson;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+  let idProduto = 0,
+   idCategoria = 0,
+   idFornecedor = 0,
+   idUsuario = 0;
+  
 
 export default class examples extends Component {
     constructor(props){
@@ -40,7 +96,10 @@ export default class examples extends Component {
         this.newProduct = this.newProduct.bind(this);
         this.state = {
             redirect:false,
-            products:[]
+            products:[],
+            categorias:[],
+            fornecedores:[],
+            usuarios:[]
         }
         
     }
@@ -64,7 +123,6 @@ export default class examples extends Component {
             }
             result.push(newProduct);
           }
-          console.log(result)
           this.setState({
             products: result
           })
@@ -72,8 +130,67 @@ export default class examples extends Component {
         .catch((error) => {
           console.error('Opa! Houve um erro:', error.message);
         });
+        await getCategorias().then((element) => {
+          const result = [];
+          for(let i in element){
+            var newCategoria = {
+              atributos:{
+                categoria:element[i].categoria
+              },
+              key: idCategoria++
+            }
+            result.push(newCategoria);
+          }
+          this.setState({
+            categorias: result
+          })
+        })
+        .catch((error) => {
+          console.error('Opa! Houve um erro:', error.message);
+        });
+        
+        await getFornecedores().then((element) => {
+          const result = [];
+          for(let i in element){
+            var newFornecedor = {
+              atributos:{
+                nome:element[i].nome,
+                cnpj:element[i].cnpj,
+                uf:element[i].uf
+              },
+              key: idFornecedor++
+            }
+            result.push(newFornecedor);
+          }
+          this.setState({
+            fornecedores: result
+          })
+        })
+        .catch((error) => {
+          console.error('Opa! Houve um erro:', error.message);
+        });
+        await getUsuarios().then((element) => {
+          const result = [];
+          for(let i in element){
+            var newUsuario = {
+              atributos:{
+                nome:element[i].nome,
+                email:element[i].email,
+              },
+              key: idUsuario++
+            }
+            result.push(newUsuario);
+          }
+          this.setState({
+            usuarios: result
+          })
+        })
+        .catch((error) => {
+          console.error('Opa! Houve um erro:', error.message);
+        });
     
       }
+      
 
   render() {
     return (
@@ -95,7 +212,8 @@ export default class examples extends Component {
             </tbody>
         </Table>
         <Container>
-            <Row>
+          <Row>
+            <Col>
                     <Table>
                         <thead>
                             <tr>
@@ -119,7 +237,70 @@ export default class examples extends Component {
                         </tbody>
                     </Table>
 
-            </Row>
+            </Col>
+            <Col>
+              <Table>
+                        <thead>
+                            <tr>
+                                <td>Categoria</td>
+                                <td>Excluir</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {this.state.categorias.map((values)=>(
+                                <tr key={values.key}>
+                                <td>{values.atributos.categoria}</td>
+                                <td>Excluir</td>
+                            </tr>
+                            ))}
+                        </tbody>
+                </Table>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+            <Table>
+                        <thead>
+                            <tr>
+                                <td>Fornecedor</td>
+                                <td>CNPJ</td>
+                                <td>UF</td>
+                                <td>Excluir</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {this.state.fornecedores.map((values)=>(
+                                <tr key={values.key}>
+                                <td>{values.atributos.nome}</td>
+                                <td>{values.atributos.cnpj}</td>
+                                <td>{values.atributos.uf}</td>
+                                <td>Excluir</td>
+                            </tr>
+                            ))}
+                        </tbody>
+                </Table>
+            </Col>
+            <Col>
+            <Table>
+                        <thead>
+                            <tr>
+                                <td>Usuário</td>
+                                <td>Email</td>
+                                <td>Excluir</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {this.state.usuarios.map((values)=>(
+                                <tr key={values.key}>
+                                <td>{values.atributos.nome}</td>
+                                <td>{values.atributos.email}</td>
+                                <td>Excluir</td>
+                            </tr>
+                            ))}
+                        </tbody>
+                </Table>
+            </Col>
+          </Row>
         </Container>
         <Footer/>
         </>

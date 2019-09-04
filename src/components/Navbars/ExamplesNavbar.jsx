@@ -94,7 +94,7 @@ class PagesNavbar extends React.Component {
               tag={Link}
             >
               <span>Brinquedox• </span>
-              Brinquedos para todos
+              Para todos
             </NavbarBrand>
             <button
               aria-expanded={this.state.collapseOpen}

@@ -3,12 +3,15 @@ var MongoClient = require('mongodb').MongoClient;
 const newuser = require('../functions/newuser'),
 newcategoria = require('../functions/newcategoria'),
 newproduct = require('../functions/newproduct'),
+newfornecedor = require('../functions/newfornecedor'),
 deluser = require('../functions/deluser'),
 delcategoria = require('../functions/delcategoria'),
 delproduct = require('../functions/delproduct'),
+delfornecedor = require('../functions/delfornecedor'),
 updateuser = require('../functions/updateuser'),
 updatecategoria = require('../functions/updatecategoria'),
-updateproduct = require('../functions/updateproduct');
+updateproduct = require('../functions/updateproduct'),
+updatefornecedor = require('../functions/updatefornecedor');
 
 var url = "mongodb+srv://brinquedo:brinquedo2019@cluster0-auved.gcp.mongodb.net/test?retryWrites=true&w=majority";
 
@@ -39,6 +42,9 @@ class dashboard{
   static insertCategoria(req,res){
     newcategoria(req,res,url)
   }
+  static insertFornecedor(req,res){
+    newfornecedor(req,res,url);
+  }
 
   static deleteProduct(req,res){
     delproduct(req,res,url);
@@ -50,6 +56,9 @@ class dashboard{
   static deleteUser(req,res){
     deluser(req,res,url);
   }
+  static deleteFornecedor(req,res){
+    delfornecedor(req,res,url);
+  }
   static putUser(req,res){
     updateuser(req,res,url);
   }
@@ -59,6 +68,10 @@ class dashboard{
   static putProduct(req,res){
     updateproduct(req,res,url);
   }
+  static putFornecedor(req,res){
+    updatefornecedor(req,res,url);
+  }
+
 
 }
 
