@@ -499,3 +499,27 @@
   content: "";
   background: rgba(0, 0, 0, .5);
 }
+
+.iconProduct{
+  font-size: 2rem;
+}
+
+.iconButton{
+  margin-left:1.2rem;
+  margin-top: 0rem;
+}
+
+.tabsCardTitle{
+  margin-left:1rem;
+}
+
+.tabsProductDescription p{
+  margin-top:1rem;
+}
+
+.tabsProductDescription img{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+

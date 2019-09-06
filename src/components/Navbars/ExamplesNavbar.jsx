@@ -93,8 +93,8 @@ class PagesNavbar extends React.Component {
               title="Designed and Coded by Creative Tim"
               tag={Link}
             >
-              <span>BLK• </span>
-              Design System React
+              <span>Brinquedox• </span>
+              Para todos
             </NavbarBrand>
             <button
               aria-expanded={this.state.collapseOpen}
@@ -117,7 +117,7 @@ class PagesNavbar extends React.Component {
               <Row>
                 <Col className="collapse-brand" xs="6">
                   <a href="#pablo" onClick={e => e.preventDefault()}>
-                    BLK•React
+                    Brinquedox• Para todos
                   </a>
                 </Col>
                 <Col className="collapse-close text-right" xs="6">
@@ -169,13 +169,13 @@ class PagesNavbar extends React.Component {
                 </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink tag={Link} to="/">
-                  Back to Kit
+                <NavLink tag={Link} to="/entrar">
+                  Login
                 </NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="https://github.com/creativetimofficial/blk-design-system-react/issues">
-                  Have an issue?
+                <NavLink href="/cadastrar">
+                  Cadastre-se
                 </NavLink>
               </NavItem>
             </Nav>
