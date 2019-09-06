@@ -30,7 +30,8 @@ import ProfilePage from "views/examples/ProfilePage.jsx";
 import Login from "./views/examples/Login.jsx";
 import NewUser from './views/examples/NewUser.jsx';
 import NewProduct from './views/examples/NewProduct.jsx';
-import NewCategoria from './views/examples/NewCategoria';
+import NewCategoria from './views/examples/NewCategoria.jsx';
+import NewFornecedor from './views/examples/NewFornecedor.jsx'
 import Painel from "./views/examples/Painel";
 import Cadastrar from './views/examples/Cadastrar.jsx';
 
@@ -69,6 +70,11 @@ ReactDOM.render(
         path="/painel/newcategoria"
         exact
         render={props => <NewCategoria {...props} />}
+      />
+      <Route
+        path="/painel/newforncededor"
+        exact
+        render={props => <NewFornecedor {...props} />}
       />
       <Route
         path="/painel"

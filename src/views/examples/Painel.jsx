@@ -208,6 +208,9 @@ export default class examples extends Component {
                 <td onClick={()=>{window.location.href="/painel/newuser"}} className="btn btn-info">
                     Cadastrar Usuário
                 </td>
+                <td onClick={()=>{window.location.href="/painel/newforncededor"}} className="btn btn-info">
+                    Cadastrar Fornecedor
+                </td>
             </tr>
             </tbody>
         </Table>
