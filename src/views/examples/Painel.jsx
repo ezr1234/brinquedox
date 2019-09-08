@@ -101,7 +101,6 @@ export default class examples extends Component {
             fornecedores:[],
             usuarios:[]
         }
-        
     }
 
     newProduct(){
@@ -192,6 +191,116 @@ export default class examples extends Component {
       }
       
 
+
+      async delProduct(values) {
+        try {
+          let response = await fetch('http://brinquedox.herokuapp.com/deleteproduct', {
+            method: 'DELETE',
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json',
+            },
+            body:JSON.stringify({
+              nome:values.atributos.nome
+            })
+        });
+          if(response.status === 200){
+            window.alert('Apagado');
+            window.location.reload();
+          }  
+          else{
+            window.alert('Erro ao apagar');
+          }
+
+        } catch (error) {
+          console.error(error);
+        }
+
+      }
+
+
+      async delCategoria(values) {
+        try {
+          let response = await fetch('http://brinquedox.herokuapp.com/deletecategoria', {
+            method: 'DELETE',
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json',
+            },
+            body:JSON.stringify({
+              categoria:values.atributos.categoria
+            })
+        });
+          if(response.status === 200){
+            window.alert('Apagado');
+            window.location.reload();
+          }  
+          else{
+            window.alert('Erro ao apagar');
+          }
+
+        } catch (error) {
+          console.error(error);
+        }
+
+      }
+
+
+      async delFornecedor(values) {
+        try {
+          let response = await fetch('http://brinquedox.herokuapp.com/deletefornecedor', {
+            method: 'DELETE',
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json',
+            },
+            body:JSON.stringify({
+              nome:values.atributos.nome,
+              cnpj:values.atributos.cnpj
+            })
+        });
+          if(response.status === 200){
+            window.alert('Apagado');
+            window.location.reload();
+          }  
+          else{
+            window.alert('Erro ao apagar');
+          }
+
+        } catch (error) {
+          console.error(error);
+        }
+
+      }
+
+
+      async delUsuario(values) {
+        try {
+          let response = await fetch('http://brinquedox.herokuapp.com/deleteuser', {
+            method: 'DELETE',
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json',
+            },
+            body:JSON.stringify({
+              nome:values.atributos.nome,
+              email:values.atributos.email
+            })
+        });
+          if(response.status === 200){
+            window.alert('Apagado');
+            window.location.reload();
+          }  
+          else{
+            window.alert('Erro ao apagar');
+          }
+
+        } catch (error) {
+          console.error(error);
+        }
+
+      }
+
   render() {
     return (
         <>
@@ -234,7 +343,7 @@ export default class examples extends Component {
                                 <td>{values.atributos.categoria}</td>
                                 <td>{values.atributos.marca}</td>
                                 <td>R$: {values.atributos.valor}</td>
-                                <td>Excluir</td>
+                                <td onClick={this.delProduct.bind(this,values)} className={"btn btn-info"}>Excluir</td>
                             </tr>
                             ))}
                         </tbody>
@@ -253,7 +362,7 @@ export default class examples extends Component {
                             {this.state.categorias.map((values)=>(
                                 <tr key={values.key}>
                                 <td>{values.atributos.categoria}</td>
-                                <td>Excluir</td>
+                                <td onClick={this.delCategoria.bind(this,values)} className={"btn btn-info"}>Excluir</td>
                             </tr>
                             ))}
                         </tbody>
@@ -277,7 +386,7 @@ export default class examples extends Component {
                                 <td>{values.atributos.nome}</td>
                                 <td>{values.atributos.cnpj}</td>
                                 <td>{values.atributos.uf}</td>
-                                <td>Excluir</td>
+                                <td onClick={this.delFornecedor.bind(this,values)} className={"btn btn-info"}>Excluir</td>
                             </tr>
                             ))}
                         </tbody>
@@ -297,7 +406,7 @@ export default class examples extends Component {
                                 <tr key={values.key}>
                                 <td>{values.atributos.nome}</td>
                                 <td>{values.atributos.email}</td>
-                                <td>Excluir</td>
+                                <td onClick={this.delUsuario.bind(this,values)} className={"btn btn-info"}>Excluir</td>
                             </tr>
                             ))}
                         </tbody>
