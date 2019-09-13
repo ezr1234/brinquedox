@@ -17,7 +17,7 @@
 */
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 
 import "assets/css/nucleo-icons.css";
 import "assets/scss/blk-design-system-react.scss?v=1.0.0";
@@ -34,6 +34,22 @@ import NewCategoria from './views/examples/NewCategoria.jsx';
 import NewFornecedor from './views/examples/NewFornecedor.jsx'
 import Painel from "./views/examples/Painel";
 import Cadastrar from './views/examples/Cadastrar.jsx';
+
+import {isAuthenticated} from './variables/auth';
+
+const PrivateRoute = ({component: Component,...rest }) =>(
+  <Route
+    {...rest}
+    render={props =>
+      isAuthenticated() ? (
+        <Component {...props} />
+      ) : (
+        <Redirect to={{pathname:'/',state:{from:props.location} }} />
+      )
+    
+    } 
+  />
+)
 
 ReactDOM.render(
   <BrowserRouter>
