@@ -1,30 +1,39 @@
-const express = require('express');
-const router = express.Router();
-const { db, adm, all } = require('./controllers/db');
-
-router.get('/allproducts', (req,res)=>{all.get(req,res,"produtos")});
-router.post('/newuser', db.newUser);
-
-//controle do dashboard
-router.post('/insertproduct', adm.insertProduct);
-router.post('/insertcategoria', adm.insertCategoria);
-router.post('/insertfornecedor', adm.insertFornecedor);
-
-router.delete('/deleteproduct', adm.deleteProduct);
-router.delete('/deleteuser', adm.deleteUser);
-router.delete('/deletecategoria', adm.deleteCategoria);
-router.delete('/deletefornecedor', adm.deleteFornecedor);
-
-router.get('/getcategoria',  (req,res)=>{all.get(req,res,"categorias")});
-router.get('/getusers',  (req,res)=>{all.get(req,res,"usuarios")});
-router.get('/getfornecedores',  (req,res)=>{all.get(req,res,"fornecedores")});
+const express = require('express'),
+router = express.Router(),
+auth = require('./controllers/authController'),
+produto = require('./controllers/produtoController'),
+categoria = require('./controllers/categoriaController'),
+user = require('./controllers/userController'),
+fornecedor = require('./controllers/fornecedorController'),
+authMiddleware = require('./middlewares/auth');
 
 
-router.put('/updateuser',adm.putUser);
-router.put('/updateproduct',adm.putProduct);
-router.put('/updatecategoria',adm.putCategoria);
-router.put('/updatefornecedor',adm.putFornecedor);
+router.post('/login',auth.login)
+router.post('/register',auth.register)
+
+
+router.use(authMiddleware)
+router.post('/add/produto',produto.add)
+router.post('/add/categoria',categoria.add)
+router.post('/add/fornecedor',fornecedor.add)
+
+router.put('/alter/produto',produto.alter)
+router.put('/alter/categoria',categoria.alter)
+router.put('/alter/user',user.alter)
+router.put('/alter/fornecedor',fornecedor.alter)
+
+router.delete('/del/produto',produto.del)
+router.delete('/del/categoria',categoria.del)
+router.delete('/del/user',user.del)
+router.delete('/del/fornecedor',fornecedor.del)
+
+router.get('/get/produto',produto.get)
+router.get('/get/categoria',categoria.get)
+router.get('/get/user',user.get)
+router.get('/get/fornecedor',fornecedor.get)
 
 
 
-module.exports=router;
+
+
+module.exports = router;

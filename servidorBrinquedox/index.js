@@ -1,16 +1,19 @@
-const express = require('express');
-const app = express();
-var cors = require('cors');
-let morgan = require('morgan');
-var port;
+const express = require('express'),
+morgan = require('morgan'),
+helmet = require('helmet'),
+app = express(),
+cors = require('cors');
 
-app.use(morgan('dev'));
+app.use(express.json())
+
+app.use(morgan('dev'))
+
+app.use(helmet());
 
 app.use(cors());
-app.use(express.json());
-app.use('/', require('./src/routes'));
 
-// eslint-disable-next-line no-undef
-app.listen(port = process.env.PORT || 8080);
+app.use('/api',require('./src/routes'))
 
-console.log("Servior rodando na porta:",port);
+app.listen(port = process.env.PORT || 80);
+
+console.log("Rodando na porta:",port)
