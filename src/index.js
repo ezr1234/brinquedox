@@ -31,7 +31,11 @@ import Login from "./views/examples/Login.jsx";
 import NewUser from './views/examples/NewUser.jsx';
 import NewProduct from './views/examples/NewProduct.jsx';
 import NewCategoria from './views/examples/NewCategoria.jsx';
-import NewFornecedor from './views/examples/NewFornecedor.jsx'
+import NewFornecedor from './views/examples/NewFornecedor.jsx';
+import UpdateProduct from './views/examples/UpdateProduct';
+import UpdateCategoria from './views/examples/UpdateCategoria';
+import UpdateFornecedor from './views/examples/UpdateFornecedor';
+import UpdateUsuario from './views/examples/UpdateUsuario';
 import Painel from "./views/examples/Painel";
 import Cadastrar from './views/examples/Cadastrar.jsx';
 
@@ -75,6 +79,26 @@ ReactDOM.render(
         path="/painel/newforncededor"
         exact
         render={props => <NewFornecedor {...props} />}
+      />
+      <Route
+        path="/painel/updatefornecedor"
+        exact
+        render={props => <UpdateFornecedor {...props} />}
+      />
+      <Route
+        path="/painel/updatecategoria"
+        exact
+        render={props => <UpdateCategoria {...props} />}
+      />
+      <Route
+        path="/painel/updateusuario"
+        exact
+        render={props => <UpdateUsuario {...props} />}
+      />
+      <Route
+        path="/painel/updateproduct"
+        exact
+        render={props => <UpdateProduct {...props} />}
       />
       <Route
         path="/painel"

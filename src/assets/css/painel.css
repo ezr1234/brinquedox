@@ -23,12 +23,24 @@
 }
 
 .table-painel{
-    padding: 10rem;
     display: flex;
     align-content: center;
     justify-content: center;
 }
 
+.painel-cadastrar{
+    margin-bottom: -3.5rem;
+}
+
+.painel-atualizar{
+    margin-bottom: 2.5rem;
+}
+
 .table-painel td{
     color:white
+}
+
+.title{
+    text-align: center;
+    margin-top:8rem;
 }

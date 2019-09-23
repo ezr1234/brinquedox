@@ -305,22 +305,43 @@ export default class examples extends Component {
     return (
         <>
         <NavBar/>
-        <Table className="table-painel">
+        <h1 className="title">Cadastrar</h1>
+
+        <Table className="table-painel painel-cadastrar">
             <tbody>
             <tr>
                 <td onClick={()=>{window.location.href="/painel/newproduct"}} className="btn btn-info">
-                    Cadastrar Produto
+                    Produto
                 </td>
                 <td onClick={()=>{window.location.href="/painel/newcategoria"}} className="btn btn-info">
-                    Cadastrar Categoria
+                    Categoria
                 </td>
                 <td onClick={()=>{window.location.href="/painel/newuser"}} className="btn btn-info">
-                    Cadastrar Usuário
+                    Usuário
                 </td>
                 <td onClick={()=>{window.location.href="/painel/newforncededor"}} className="btn btn-info">
-                    Cadastrar Fornecedor
+                    Fornecedor
                 </td>
-            </tr>
+            </tr>            
+            </tbody>
+        </Table>
+        <h1 className="title">Atualizar</h1>
+        <Table className="table-painel painel-atualizar">
+            <tbody>
+            <tr>
+                <td onClick={()=>{window.location.href="/painel/updateproduct"}} className="btn btn-info">
+                    Produto
+                </td>
+                <td onClick={()=>{window.location.href="/painel/updatecategoria"}} className="btn btn-info">
+                    Categoria
+                </td>
+                <td onClick={()=>{window.location.href="/painel/updateusuario"}} className="btn btn-info">
+                    Usuário
+                </td>
+                <td onClick={()=>{window.location.href="/painel/updatefornecedor"}} className="btn btn-info">
+                    Fornecedor
+                </td>
+            </tr>            
             </tbody>
         </Table>
         <Container>
