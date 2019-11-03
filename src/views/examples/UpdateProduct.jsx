@@ -102,7 +102,7 @@ export default class newUser extends Component {
               >        
                  <i className="tim-icons icon-double-left iconProduct"/>
             </button>
-              <h1>Atualizar Usuário</h1>
+              <h1>Atualizar Produto</h1>
               <Container>
               <Form className={"form"} onSubmit={this.handleSubmit}>
                 <Input type="text" className="form-input" placeholder="Nome do produto" name="nome" value={nome} onChange={this.handleInputChange}/>
